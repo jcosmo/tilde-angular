@@ -4,7 +4,7 @@ angular.module( 'tide.controllers', [] ).
   controller( 'ProjectCtrl',
               function ( $scope, $location )
               {
-                $scope.projects = dataStore['projects'];
+                $scope.projects = dataStore.projects;
 
                 $scope.save = function ()
                 {
@@ -16,7 +16,7 @@ angular.module( 'tide.controllers', [] ).
   .controller( 'UserCtrl',
                function ( $scope, $location )
                {
-                 $scope.users = dataStore['users'];
+                 $scope.users = dataStore.users;
 
                  $scope.save = function ()
                  {
@@ -29,6 +29,10 @@ angular.module( 'tide.controllers', [] ).
                function ( $scope, $location, $routeParams )
                {
                  $scope.user = angular.copy( findUser( $routeParams.userId ) );
+
+                 $scope.findProject = findProject;
+
+                 $scope.unassignedProjects = _.filter(dataStore.projects, function(x) { return !_.contains($scope.user.projects, x.id); } );
 
                  $scope.save = function ()
                  {

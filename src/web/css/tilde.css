@@ -15,3 +15,16 @@ table.list td {
 table.list {
   border: solid 1px silver;
 }
+
+table.draglist td {
+  border: solid 1px silver;
+}
+
+.draglist ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.draglist li {
+  border: dotted 1px silver;
+}

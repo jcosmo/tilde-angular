@@ -10,8 +10,38 @@
         Required</span>
   </div>
 
+  <label>Projects</label>
+  <table id="projectList" class="list draglist">
+    <tr>
+      <th>Assigned</th>
+      <th>Available</th>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <ul id="assigned" class="ui-widget-content">
+            <li ng-repeat="projectId in user.projects">
+              <span id="project-{{projectId}}">{{findProject(projectId).name}}</span></li>
+          </ul>
+        </div>
+      </td>
+      <td>
+        <div>
+          <ul id="unassigned" class="ui-widget-content">
+            <li ng-repeat="project in unassignedProjects"><span id="project-{{project.id}}">{{project.name}}</span></li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </table>
+
   <br>
   <a href="#/users" class="btn">Cancel</a>
   <button ng-click="save()" ng-disabled="isClean() || userForm.$invalid"
-          class="btn btn-primary">Save</button>
+          class="btn btn-primary">Save
+  </button>
 </form>
+
+<script type="text/javascript">
+  //$("#project-0").draggable();
+</script>

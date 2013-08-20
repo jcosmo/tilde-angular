@@ -4,8 +4,8 @@ var dataStore = {
     {id: 1, name: 'Proj 2', desc: 'something'}
   ],
   'users': [
-    {id: 0, name: 'James', projects: [1]},
-    {id: 1, name: 'Ian', projects: [1, 2]}
+    {id: 0, name: 'James', projects: [0]},
+    {id: 1, name: 'Ian', projects: [0, 1]}
   ]};
 
 function nextId( list )
@@ -37,6 +37,11 @@ function addProject( project )
 function findUser( id )
 {
   return find( dataStore.users, id );
+}
+
+function findProject( id )
+{
+  return find( dataStore.projects, id );
 }
 
 function find( list, id )
