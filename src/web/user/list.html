@@ -1,0 +1,21 @@
+<h1>Users</h1>
+<input type="text" ng-model="search" class="search-query" placeholder="Search">
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th><a href="#/user/new"><i class="icon-plus-sign"></i></a></th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr ng-repeat="user in users | filter:search | orderBy:'name'">
+    <td>{{user.name}}</a></td>
+    <td>
+      <a href="#/user/edit/{{user.$id}}"><i class="icon-pencil"></i></a>
+    </td>
+  </tr>
+
+  </tbody>
+</table>
+</div>

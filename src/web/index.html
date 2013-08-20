@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html ng-app='tide'>
 <head>
   <title>Projects</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script src="js/angular.min.js"></script>
-  <script src="js/angular/projects.js"></script>
-
   <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
   <link href="css/tilde.css" rel="stylesheet" media="screen">
 </head>
-<body ng-app>
+<body>
 
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
@@ -25,8 +22,8 @@
       <div class="nav-collapse collapse">
         <ul class="nav">
           <li class="active"><a href="#">Home</a></li>
-          <li><a href="index.html">Projects</a></li>
-          <li><a href="users.html">Users</a></li>
+          <li><a href="#/projects">Projects</a></li>
+          <li><a href="#/users">Users</a></li>
         </ul>
       </div>
     </div>
@@ -36,32 +33,14 @@
 <div class="container">
 
   <div ng-view>
-
   </div>
-  <h1>Projects</h1>
 
-
-  <table>
-    <thead>
-    <tr>
-      <th>Project</th>
-      <th>Description</th>
-      <th><a href="#/new"><i class="icon-plus-sign"></i></a></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="project in projects | filter:search | orderBy:'name'">
-      <td><a href="{{project.site}}" target="_blank">{{project.name}}</a></td>
-      <td>{{project.description}}</td>
-      <td>
-        <a href="#/edit/{{project.$id}}"><i class="icon-pencil"></i></a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
 </div>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/angular/app.js"></script>
+<script src="js/angular/controllers.js"></script>
 
 </body>
 </html>
