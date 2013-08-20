@@ -6,9 +6,10 @@ angular.module( 'tide.controllers', [] ).
               {
                 $scope.projects = dataStore['projects'];
 
-                $scope.save = function( name, desc ) {
-                  $scope.projects.push( {'name' :$scope.project.name, 'desc': $scope.project.desc });
-                  $location.path('/projects');
+                $scope.save = function ()
+                {
+                  addProject( {'name': $scope.project.name, 'desc': $scope.project.desc} );
+                  $location.path( '/projects' );
                 };
               } )
 
@@ -17,8 +18,21 @@ angular.module( 'tide.controllers', [] ).
                {
                  $scope.users = dataStore['users'];
 
-                 $scope.save = function( name, desc ) {
-                   $scope.users.push( {'name' :$scope.user.name });
-                   $location.path('/users');
+                 $scope.save = function ()
+                 {
+                   addUser( {'name': $scope.user.name} );
+                   $location.path( '/users' );
+                 };
+               } )
+
+  .controller( 'UserEditCtrl',
+               function ( $scope, $location, $routeParams )
+               {
+                 $scope.user = angular.copy( findUser( $routeParams.userId ) );
+
+                 $scope.save = function ()
+                 {
+                   updateUser( $scope.user.id, {'name': $scope.user.name} );
+                   $location.path( '/users' );
                  };
                } );

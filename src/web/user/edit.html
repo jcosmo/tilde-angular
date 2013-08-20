@@ -1,0 +1,17 @@
+<h1>Admin</h1>
+<h2>Users</h2>
+<h3>Editing {{user.name}}</h3>
+
+<form name="userForm">
+  <div class="control-group" ng-class="{error: userForm.name.$invalid}">
+    <label>Name</label>
+    <input type="text" name="name" ng-model="user.name" required>
+    <span ng-show="userForm.name.$error.required" class="help-inline">
+        Required</span>
+  </div>
+
+  <br>
+  <a href="#/users" class="btn">Cancel</a>
+  <button ng-click="save()" ng-disabled="isClean() || userForm.$invalid"
+          class="btn btn-primary">Save</button>
+</form>

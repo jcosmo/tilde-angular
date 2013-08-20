@@ -16,18 +16,9 @@ angular.module( "tide", ['tide.controllers'] ).config(
                           {controller: 'UserCtrl', templateUrl: 'user/list.html'} );
      $routeProvider.when( '/user/new',
                           {controller: 'UserCtrl', templateUrl: 'user/new.html'} );
+     $routeProvider.when( '/user/edit/:userId',
+                          {controller: 'UserEditCtrl', templateUrl: 'user/edit.html'} );
      $routeProvider.when( '/todo',
                           {templateUrl: 'dashboard/todo.html'} );
      $routeProvider.otherwise( {redirectTo: '/todo'} );
    }] );
-
-var dataStore = {
-  'projects': [
-    {name: 'Proj 1', desc: 'foo boar bob'},
-    {name: 'Proj 2', desc: 'something'}
-  ],
-  'users': [
-    {name: 'James'},
-    {name: 'Ian'}
-  ]};
-
