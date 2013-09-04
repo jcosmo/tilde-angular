@@ -36,7 +36,7 @@ angular.module( 'tide.controllers', [] ).
 
                  $scope.save = function ()
                  {
-                   updateUser( $scope.user.id, {'name': $scope.user.name} );
+                   updateUser( $scope.user.id, {'name': $scope.user.name, 'projects': $scope.user.projects} );
                    $location.path( '/users' );
                  };
                } );

@@ -2,7 +2,7 @@
 <h2>Users</h2>
 <h3>Editing {{user.name}}</h3>
 
-<form name="userForm">
+<form id="userForm" name="userForm">
   <div class="control-group" ng-class="{error: userForm.name.$invalid}">
     <label>Name</label>
     <input type="text" name="name" ng-model="user.name" required>
@@ -17,18 +17,21 @@
       <th>Available</th>
     </tr>
     <tr>
-      <td>
+      <td ondragover="allowDrop(event)" ondrop="dropAndAssign(event)">
         <div>
           <ul id="assigned" class="ui-widget-content">
-            <li ng-repeat="projectId in user.projects">
-              <span id="project-{{projectId}}">{{findProject(projectId).name}}</span></li>
+            <li ng-repeat="projectId in user.projects" id="project-{{projectId}}" data-projectid="{{projectId}}" draggable="true" ondragstart="drag(event)">
+              <span>{{findProject(projectId).name}}</span>
+            </li>
           </ul>
         </div>
       </td>
-      <td>
+      <td ondragover="allowDrop(event)" ondrop="dropAndUnassign(event)">
         <div>
           <ul id="unassigned" class="ui-widget-content">
-            <li ng-repeat="project in unassignedProjects"><span id="project-{{project.id}}">{{project.name}}</span></li>
+            <li ng-repeat="project in unassignedProjects" id="project-{{project.id}}"  data-projectid="{{project.id}}" draggable="true" ondragstart="drag(event)">
+              <span>{{project.name}}</span>
+            </li>
           </ul>
         </div>
       </td>
@@ -43,5 +46,51 @@
 </form>
 
 <script type="text/javascript">
-  //$("#project-0").draggable();
+  function assignProject( user, projectId )
+  {
+    if ( user.projects.indexOf(projectId) == -1 )
+    {
+      user.projects.push( projectId );
+      var scope = angular.element($("#userForm")).scope();
+      scope.unassignedProjects = _.without( scope.unassignedProjects, findProject( projectId ) );
+    }
+  }
+
+  function unassignProject( user, projectId )
+  {
+    if ( user.projects.indexOf( projectId ) != -1 )
+    {
+      var scope = angular.element($("#userForm")).scope();
+      scope.unassignedProjects.push( findProject( projectId ) );
+      user.projects = _.without( user.projects, projectId );
+    }
+  }
+
+  function drag( event )
+  {
+    event.dataTransfer.setData( "Text", event.target.dataset["projectid"] );
+  }
+
+  function dropAndAssign( event )
+  {
+    event.preventDefault();
+    var scope = angular.element($("#userForm")).scope();
+    scope.$apply(function(){
+      assignProject( scope.user, parseInt(event.dataTransfer.getData("Text")) );
+    })
+  }
+
+  function dropAndUnassign( event )
+  {
+    event.preventDefault();
+    var scope = angular.element($("#userForm")).scope();
+    scope.$apply(function(){
+      unassignProject( scope.user, parseInt(event.dataTransfer.getData("Text")) );
+    })
+  }
+
+  function allowDrop( event )
+  {
+    event.preventDefault();
+  }
 </script>
