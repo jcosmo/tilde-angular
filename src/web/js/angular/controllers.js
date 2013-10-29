@@ -39,4 +39,12 @@ angular.module( 'tide.controllers', [] ).
                    updateUser( $scope.user.id, {'name': $scope.user.name, 'projects': $scope.user.projects} );
                    $location.path( '/users' );
                  };
+               } )
+
+  .controller( 'TimesheetCtrl',
+               function ( $scope, $location, $routeParams )
+               {
+                 $scope.user = angular.copy( findUser( 1 ) );
+                 $scope.findProject = findProject;
+                 $scope.days = [{'dayname': 'Monday', 'date': '1 Jan 2013' },{'dayname': 'Tuesday', 'date': '2 Jan 2013' }]
                } );

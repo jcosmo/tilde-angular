@@ -1,1 +1,41 @@
-Todo
+<table class="timesheet" cellspacing="0" width="100%">
+  <tr class="weekSummary">
+    <td colspan="4">
+      Timesheet for week starting&nbsp;
+      <a href="#"><span class="glyphicon glyphicon-fast-backward" /></a>
+      <a href="#"><span class="glyphicon glyphicon-step-backward" /></a>
+      &nbsp;16 Sep 2013&nbsp;
+      <a href="#"><span class="glyphicon glyphicon-step-forward" /></a>
+      <a href="#"><span class="glyphicon glyphicon-fast-forward" /></a>
+    </td>
+  </tr>
+  <tr>
+    <th>Day</th>
+    <th>Project</th>
+    <th>Hours</th>
+    <th>Comment</th>
+    <th>&nbsp;</th>
+  </tr>
+  <tr ng-repeat="day in days">
+    <td>
+      {{day.dayname}}
+      {{day.date}}
+    </td>
+    <td>
+      <select>
+        <option ng-repeat="project in user.projects" value="{{project.id}}">
+          {{findProject(project).name}}
+        </option>
+      </select>
+    </td>
+    <td>
+      <input type="text" maxlength="22" size="12" value="6.0">
+    </td>
+    <td>
+      <input type="text" maxlength="100" size="22" value="">
+    </td>
+    <td>
+      <a href="#"><img border=0 align="left" alt="Delete" src="img/delete.gif"></a>
+    </td>
+  </tr>
+</table>
