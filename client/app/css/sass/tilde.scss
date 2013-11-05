@@ -1,3 +1,254 @@
+body {
+  background-color: #ffeddd;
+}
+
+a {
+  color: #893d30;
+}
+
+a:hover, a:active, a:focus,
+a:hover .glyphicon, a:active .glyphicon, a:focus .glyphicon {
+  color: #d83b22;
+  text-decoration: none;
+}
+
+.topbar {
+  background: #000;
+  color: #eee;
+  text-align: right;
+  line-height: 22px;
+  padding-right: 15px;
+  height: 22px;
+  font-size: small;
+  display: none;
+}
+
+.topbar a {
+  color: #eee;
+}
+
+.topbar a:hover,
+.topbar a:active,
+.topbar a:focus {
+  color: #FF9900;
+}
+
+.navbar {
+  background-color: #4e4644;
+  margin-bottom: 0;
+  min-height: 52px;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.navbar .navbar-header .title {
+  color: #ae9d95;
+  font-size: 22px;
+  margin: 10px 20px 0 10px;
+  float: left;
+}
+
+.navbar .navbar-header .title .page {
+  font-size: 16px;
+}
+
+.navbar .navbar-header .timesheet_nav {
+  float: left;
+  margin: 10px 10px 0 50px;
+}
+
+.navbar-default .navbar-toggle {
+  border: none;
+  margin-right: 10px;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #893d30;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ae9d95;
+}
+
+.navbar-default .navbar-nav li a {
+  color: #ffe5ba;
+}
+
+.navbar-default .navbar-nav li a:hover {
+  color: #d83b22;
+}
+
+.navbar-default .glyphicon {
+  color: #893d30;
+}
+
+.navbar-collapse {
+  background-color: #4e4644;
+}
+
+.navbar .btn-default {
+  background-color: #ae9d95;
+  border-color: #4e4644;
+  color: #893d30;
+}
+
+.navbar .actions {
+  margin: 10px 10px 0 0;
+}
+
+.navbar .btn-default:hover,
+.navbar .btn-default:focus,
+.navbar .btn-default:active,
+.navbar .btn-default.active,
+.navbar .btn-default:hover .glyphicon,
+.navbar .btn-default:focus .glyphicon,
+.navbar .btn-default:active .glyphicon,
+.navbar .btn-default.active .glyphicon {
+  border-color: #4e4644;
+  background-color: #ffe5ba;
+  color: #d83b22;
+}
+
+.navbar .btn-default.active {
+  color: #893d30
+}
+
+.timesheet {
+  overflow: auto;
+  position: absolute;
+  top: 52px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.timesheet .col-md-1 {
+  border-bottom: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  background-color: #f5f5f5
+}
+
+.timesheet .cell {
+  position: relative;
+  background-color: #ae9d95;
+  background-color: #f5f5f5;
+  color: white;
+  white-space: nowrap;
+  padding: 4px;
+  height: 28px;
+
+  &.day {
+    background-color: #ae9d95;
+    color: black;
+
+    &.current {
+      font-weight: bold;
+    }
+
+    .date {
+      padding-top: 2px;
+    }
+  }
+
+  &.project {
+    background-color: #e1e1e1;
+    color: black;
+    font-weight: bold;
+  }
+
+  &.work {
+    color: black;
+
+    &.current {
+      background-color: #ffdbd9;
+    }
+
+    input {
+      background: white;
+      height: 20px;
+    }
+  }
+}
+
+
+.timesheet .day_actions {
+  text-align: center;
+}
+
+.timesheet .day_actions .action {
+  float: right;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .navbar-collapse ul.navbar-nav {
+    float: right;
+  }
+}
+
+.glyphicon-remove-circle {
+  color: red;
+
+  &.disabled {
+    color: #d3d3d3;
+  }
+}
+
+.glyphicon-comment {
+  color: #d3d3d3;
+
+  &.active {
+    color: slategray;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .timesheet .col-md-1.start {
+    border-left: 1px solid lightgray;
+  }
+
+  .timesheet .day_actions .text {
+    display: none;
+  }
+
+  .topbar {
+    display: block;
+  }
+
+  .timesheet {
+    top: 84px;
+    left: 4%;
+  }
+
+  .timesheet .col-md-1 {
+    width: 12%;
+  }
+
+  .timesheet .cell {
+    cursor: pointer;
+  }
+
+  .timesheet .day_actions {
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    height: 20px;
+    margin: 0 10px;
+
+
+  }
+
+  .timesheet {
+    overflow: visible;
+  }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}
+
 table.list th {
   padding: 0.3em;
   padding-right: 1em;

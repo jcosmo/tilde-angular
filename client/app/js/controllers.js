@@ -61,16 +61,29 @@ tc.controller( 'UserEditCtrl',
                } );
 
 tc.controller( 'TimesheetCtrl',
-               function ( $scope, $rootScope )
+               function ( $scope, $rootScope, $routeParams )
                {
                  $rootScope.pagetitle = "Timesheet";
                  $rootScope.login = angular.copy( findUser( 1 ) );
+
                  $scope.user = $rootScope.login
                  $scope.findProject = findProject;
-                 $scope.days = [
-                   {'dayname': 'Monday', 'date': '1 Jan 2013' },
-                   {'dayname': 'Tuesday', 'date': '2 Jan 2013' }
-                 ]
+
+                 var today = moment().startOf('day');
+                 var firstDay = ($routeParams.from ? moment($routeParams.from, 'YYYYMMDD') : moment()).startOf('day');
+
+                 $scope.days = [];
+                 for (var i = 0; i < 7; i++)
+                 {
+                   var day = firstDay.clone().add('days', i )
+                   var dayData = {'name': day.format('ddd MMM DD')};
+                   if ( day.isSame(today) )
+                   {
+                     dayData.today = true;
+                   }
+                   $scope.days.push( dayData );
+                 }
+                 $scope.work = findWorkForUser($scope.user.id, firstDay, firstDay.clone().add('days', 7));
                } );
 
 tc.controller( 'TestCtrl',

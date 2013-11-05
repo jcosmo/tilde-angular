@@ -6,6 +6,11 @@ var dataStore = {
   'users': [
     {id: 0, name: 'James', projects: [0]},
     {id: 1, name: 'Ian', projects: [0, 1]}
+  ],
+  'work': [
+    {id:0, userid: 1, projectid: 0, date: moment().startOf('day'), hours: 3, comment: 'no comment'},
+    {id:1, userid: 1, projectid: 0, date: moment().startOf('day' ).add(2, 'days'), hours: 4, comment: 'a comment'},
+    {id:2, userid: 1, projectid: 1, date: moment().startOf('day' ).add(2, 'days'), hours: 2, comment: 'proj 2'}
   ]};
 
 function nextId( list )
@@ -42,6 +47,26 @@ function findUser( id )
 function findProject( id )
 {
   return find( dataStore.projects, id );
+}
+
+function findWorkForUser( id, fromDate, toDate )
+{
+  var w = {};
+  for ( var i = 0; i < dataStore.work.length; i++ )
+  {
+    if ( dataStore.work[i].userid == id )
+    {
+      if (!w[dataStore.work[i].projectid])
+      {
+        w[dataStore.work[i].projectid] = [dataStore.work[i]];
+      }
+      else
+      {
+        w[dataStore.work[i].projectid].push(dataStore.work[i]);
+      }
+    }
+  }
+  return w;
 }
 
 function find( list, id )

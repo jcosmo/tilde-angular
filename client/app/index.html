@@ -7,7 +7,6 @@
 
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
   <link href="css/tilde.css" rel="stylesheet" media="screen">
-  <link href="css/calendar.main.css" rel="stylesheet" media="screen">
 </head>
 <body>
 <div class="topbar">
@@ -19,7 +18,7 @@
 <nav class="navbar navbar-default" role="navigation">
   <div class="navbar-header">
     <div class="title">
-      Tilde - {{pagetitle}}
+      Tilde <span class="page">{{pagetitle}}</span>
     </div>
   </div>
   <div id="nav_menu" class="collapse navbar-collapse">
@@ -49,6 +48,7 @@
 
 </div>
 <script src="lib/underscore-min.js"></script>
+<script src="lib/moment.min.js"></script>
 <script src="lib/jquery/jquery.min.js"></script>
 <script src="js/datastore.js"></script>
 <script src="lib/bootstrap/js/bootstrap.min.js"></script>

@@ -7,6 +7,8 @@ app.config(
    {
      $routeProvider.when( '/timesheet',
                           {controller: 'TimesheetCtrl', templateUrl: 'partials/timesheet/index.html'} );
+     $routeProvider.when( '/timesheet/:from',
+                          {controller: 'TimesheetCtrl', templateUrl: 'partials/timesheet/index.html'} );
      $routeProvider.when( '/admin',
                           {controller: 'AdminCtrl', templateUrl: 'partials/dashboard/admin.html'} );
      $routeProvider.when( '/projects',
