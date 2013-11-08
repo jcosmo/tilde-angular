@@ -18,7 +18,7 @@
       </div>
       <div ng-repeat="day in days" id="{{projectid}}_work_cell_{{day}}" class="col-md-1 work cell {{day.today == true ? 'current' : 'not_current'}}">
         <div id="{{projectid}}_work_details_{{day}}_1" class="work_details">
-          <input type="text" size="10" value="10"/>
+          <input type="text" size="10" ng-value="{{selectWorkForProject(work, day, projectid).hours}}"/>
         </div>
         <div id="{{projectid}}_day_details_{{day}}_1" class="day_details">
           <div class="day_actions">

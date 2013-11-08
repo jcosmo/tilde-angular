@@ -75,7 +75,7 @@ tc.controller( 'TimesheetCtrl',
                  for (var i = 0; i < 7; i++)
                  {
                    var day = firstDay.clone().add('days', i )
-                   var dayData = {'name': day.format('ddd MMM DD')};
+                   var dayData = {name: day.format('ddd MMM DD'),  date: day};
                    if ( day.isSame(today) )
                    {
                      dayData.today = true;
@@ -83,6 +83,11 @@ tc.controller( 'TimesheetCtrl',
                    $scope.days.push( dayData );
                  }
                  $scope.work = findWorkForUser($scope.user.id, firstDay, firstDay.clone().add('days', 7));
+                 console.log("workset is " + JSON.stringify($scope.work))
+                 $scope.selectWorkForProject = function( workSet, day, projectid)
+                   {
+                     return _.find( workSet[projectid], function (work) { return work.date.isSame(day.date) } )
+                   };
                } );
 
 tc.controller( 'TestCtrl',
