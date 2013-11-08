@@ -3,17 +3,17 @@
 var tc = angular.module( 'tideControllers', [] );
 
 tc.controller( 'AdminCtrl',
-               function ( $scope, $rootScope, $location )
+               function ( $scope, $location )
                {
-                 $rootScope.pagetitle = "Administration";
-                 $rootScope.login = angular.copy( findUser( 1 ) );
+                 $scope.site.title = "Administration";
+                 $scope.site.login = angular.copy( findUser( 1 ) );
                } );
 
 tc.controller( 'ProjectCtrl',
-               function ( $scope, $rootScope, $location )
+               function ( $scope, $location )
                {
-                 $rootScope.pagetitle = "Project Administration";
-                 $rootScope.login = angular.copy( findUser( 1 ) );
+                 $scope.site.title = "Project Administration";
+                 $scope.site.login = angular.copy( findUser( 1 ) );
                  $scope.projects = dataStore.projects;
 
                  $scope.save = function ()
@@ -24,11 +24,10 @@ tc.controller( 'ProjectCtrl',
                } );
 
 tc.controller( 'UserCtrl',
-               function ( $scope, $rootScope, $location )
+               function ( $scope, $location )
                {
-                 $rootScope.pagetitle = "User Administration";
-                 $rootScope.login = angular.copy( findUser( 1 ) );
-                 $scope.pagetitle = 'User Administration';
+                 $scope.site.title = "User Administration";
+                 $scope.site.login = angular.copy( findUser( 1 ) );
                  $scope.users = dataStore.users;
 
                  $scope.save = function ()
@@ -39,10 +38,10 @@ tc.controller( 'UserCtrl',
                } );
 
 tc.controller( 'UserEditCtrl',
-               function ( $scope, $rootScope, $location, $routeParams )
+               function ( $scope, $location, $routeParams )
                {
-                 $rootScope.pagetitle = "User Administration";
-                 $rootScope.login = angular.copy( findUser( 1 ) );
+                 $scope.site.title = "User Administration";
+                 $scope.site.login = angular.copy( findUser( 1 ) );
                  $scope.user = angular.copy( findUser( $routeParams.userId ) );
 
                  $scope.findProject = findProject;
@@ -61,12 +60,12 @@ tc.controller( 'UserEditCtrl',
                } );
 
 tc.controller( 'TimesheetCtrl',
-               function ( $scope, $rootScope, $routeParams )
+               function ( $scope, $routeParams )
                {
-                 $rootScope.pagetitle = "Timesheet";
-                 $rootScope.login = angular.copy( findUser( 1 ) );
+                 $scope.site.title = "Timesheet";
+                 $scope.site.login = angular.copy( findUser( 1 ) );
 
-                 $scope.user = $rootScope.login
+                 $scope.user = $scope.site.login
                  $scope.findProject = findProject;
 
                  var today = moment().startOf('day');
@@ -87,8 +86,8 @@ tc.controller( 'TimesheetCtrl',
                } );
 
 tc.controller( 'TestCtrl',
-               function TestCtrl( $scope, $rootScope )
+               function TestCtrl( $scope )
                {
-                 $rootScope.login = angular.copy( findUser( 1 ) );
-                 $rootScope.pagetitle = "Test Controller";
+                 $scope.site.title = "Test Controller";
+                 $scope.site.login = angular.copy( findUser( 1 ) );
                } );

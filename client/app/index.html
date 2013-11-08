@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="tide" lang="en">
 <head>
-  <title>Tilde - {{pagetitle}}</title>
+  <title>Tilde - {{site.title}}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="topbar">
-  <a href="#">{{login.name}}</a>
+  <a href="#">{{site.login.name}}</a>
   |
   <a href="#">Close</a>
 </div>
@@ -18,7 +18,7 @@
 <nav class="navbar navbar-default" role="navigation">
   <div class="navbar-header">
     <div class="title">
-      Tilde <span class="page">{{pagetitle}}</span>
+      Tilde <span class="page">{{site.title}}</span>
     </div>
   </div>
   <div id="nav_menu" class="collapse navbar-collapse">

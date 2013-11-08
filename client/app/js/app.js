@@ -26,3 +26,9 @@ app.config(
 
      $routeProvider.otherwise( {redirectTo: '/todo'} );
    }] );
+app.run(['$rootScope', function startup($rootScope) {
+  $rootScope.site = {
+    title: 'undefined',
+    login: {}
+  };
+}]);
