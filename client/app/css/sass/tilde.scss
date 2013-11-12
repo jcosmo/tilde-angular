@@ -275,3 +275,9 @@ table.draglist td {
 .draglist li {
   border: dotted 1px silver;
 }
+
+input {
+  &.ng-invalid {
+    border: solid 1px red;
+  }
+}
