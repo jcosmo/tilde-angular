@@ -104,3 +104,5 @@ tc.controller( 'TestCtrl',
                  $scope.site.title = "Test Controller";
                  $scope.site.login = angular.copy( findUser( 1 ) );
                } );
+
+tc.filter('wc_active', function() { return function(x) {return x != undefined && x.comment != undefined ? 'active' : 'inactive'; } });
