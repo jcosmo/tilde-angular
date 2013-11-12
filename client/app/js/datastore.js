@@ -87,3 +87,22 @@ function updateUser( id, props )
   user.name = props.name;
   user.projects = props.projects;
 }
+
+function newWorkPlaceholder(userid, projectid, date)
+{
+  return {
+    userid: userid,
+    projectid: projectid,
+    date: date
+  };
+}
+
+function updateWork( work )
+{
+  if (work.id)
+  {
+    return;
+  }
+  work.id = nextId( dataStore.work );
+  dataStore.work.push( work );
+}

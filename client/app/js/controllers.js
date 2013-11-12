@@ -3,7 +3,7 @@
 var tc = angular.module( 'tideControllers', [] );
 
 tc.controller( 'AdminCtrl',
-               function ( $scope, $location )
+               function ( $scope )
                {
                  $scope.site.title = "Administration";
                  $scope.site.login = angular.copy( findUser( 1 ) );
@@ -84,10 +84,18 @@ tc.controller( 'TimesheetCtrl',
                  }
                  $scope.work = findWorkForUser($scope.user.id, firstDay, firstDay.clone().add('days', 7));
                  console.log("workset is " + JSON.stringify($scope.work))
-                 $scope.selectWorkForProject = function( workSet, day, projectid)
+                 $scope.findOrCreateWorkForProject = function( workSet, day, projectid)
                    {
-                     return _.find( workSet[projectid], function (work) { return work.date.isSame(day.date) } )
+                     var existing = _.find( workSet[projectid], function (work) { return work.date.isSame(day.date) } );
+                     if (existing != undefined)
+                     {
+                       return existing;
+                     }
+                     existing = newWorkPlaceholder($scope.user.id, projectid, day.date);
+                     return existing;
                    };
+
+                 $scope.saveWork = function(work) { updateWork(work); };
                } );
 
 tc.controller( 'TestCtrl',

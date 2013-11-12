@@ -16,9 +16,10 @@
           {{findProject(projectid).name}}
         </div>
       </div>
-      <div ng-repeat="day in days" id="{{projectid}}_work_cell_{{day}}" class="col-md-1 work cell {{day.today == true ? 'current' : 'not_current'}}">
+      <div ng-repeat="day in days" id="{{projectid}}_work_cell_{{day}}" class="col-md-1 work cell {{day.today == true ? 'current' : 'not_current'}}"
+          ng-init="work=findOrCreateWorkForProject(work, day, projectid)">
         <div id="{{projectid}}_work_details_{{day}}_1" class="work_details">
-          <input type="text" size="10" ng-value="{{selectWorkForProject(work, day, projectid).hours}}"/>
+          <input type="text" size="10" ng-model="work.hours" ng-change="saveWork(work)" ng-pattern="/^\d+$/"/>
         </div>
         <div id="{{projectid}}_day_details_{{day}}_1" class="day_details">
           <div class="day_actions">
