@@ -60,7 +60,7 @@ tc.controller( 'UserEditCtrl',
                } );
 
 tc.controller( 'TimesheetCtrl',
-               function ( $scope, $routeParams )
+               function ( $scope, $routeParams, $modal, $log )
                {
                  $scope.site.title = "Timesheet";
                  $scope.site.login = angular.copy( findUser( 1 ) );
@@ -83,7 +83,6 @@ tc.controller( 'TimesheetCtrl',
                    $scope.days.push( dayData );
                  }
                  $scope.work = findWorkForUser($scope.user.id, firstDay, firstDay.clone().add('days', 7));
-                 console.log("workset is " + JSON.stringify($scope.work))
                  $scope.findOrCreateWorkForProject = function( workSet, day, projectid)
                    {
                      var existing = _.find( workSet[projectid], function (work) { return work.date.isSame(day.date) } );
@@ -96,6 +95,24 @@ tc.controller( 'TimesheetCtrl',
                    };
 
                  $scope.saveWork = function(work) { updateWork(work); };
+
+                 $scope.open_comment = function(work) {
+                   console.log("starting dialog");
+                   var modalDlg = $modal.open({
+                     templateUrl: 'aaa.html',
+                     resolve: {
+                       foo: "Mr Foo",
+                       bar: "Mr Bar"
+                     }
+                    });
+
+                   modalDlg.opened.then( function() {
+                     console.log("dialog opened");
+                   })
+                   modalDlg.result.then( function(result) {
+                     $log.info("Dialog closed");
+                   });
+                 }
                } );
 
 tc.controller( 'TestCtrl',

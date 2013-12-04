@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module( "tide", ['ngRoute', 'tideControllers']);
+var app = angular.module( "tide", ['ui.bootstrap', 'ngRoute', 'tideControllers']);
 app.config(
   ['$routeProvider',
    function ( $routeProvider )
