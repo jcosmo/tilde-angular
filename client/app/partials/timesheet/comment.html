@@ -1,0 +1,23 @@
+<div class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="comment_title">Comments for aaa</h4>
+      </div>
+      <div class="modal-body">
+        <ng-form name="commentDetails" novalidate role="form">
+          <div class="form-group input-group-lg" ng-class="{true: \'has-error\'}[nameDialog.username.$dirty && nameDialog.username.$invalid]">
+            <label class="control-label" for="comment">Comment:</label>
+            <input type="text" class="form-control" name="comment" id="comment" xng-model="user.name" ng-keyup="hitEnter($event)" required />
+          </div>
+        </ng-form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="(commentDetails.$dirty && commentDetails.$invalid) || commentDetails.$pristine">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

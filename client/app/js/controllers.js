@@ -60,7 +60,7 @@ tc.controller( 'UserEditCtrl',
                } );
 
 tc.controller( 'TimesheetCtrl',
-               function ( $scope, $routeParams )
+               function ( $scope, $routeParams, $dialogs )
                {
                  $scope.site.title = "Timesheet";
                  $scope.site.login = angular.copy( findUser( 1 ) );
@@ -96,6 +96,15 @@ tc.controller( 'TimesheetCtrl',
                    };
 
                  $scope.saveWork = function(work) { updateWork(work); };
+
+                 $scope.openComment = function openComment() {
+                   var dlg = $dialogs.create('/partials/timesheet/comment.html','CommentDlgCtrl',{},{key: false,back: 'static'});
+                   dlg.result.then(function onOk(name){
+                     ;
+                   },function onCancel(){
+                     ;
+                   });
+                 };
                } );
 
 tc.controller( 'TestCtrl',
@@ -106,3 +115,20 @@ tc.controller( 'TestCtrl',
                } );
 
 tc.filter('wc_active', function() { return function(x) {return x != undefined && x.comment != undefined ? 'active' : 'inactive'; } });
+
+
+tc.controller('CommentDlgCtrl',function($scope,$modalInstance,data){
+
+  $scope.cancel = function(){
+    $modalInstance.dismiss('canceled');
+  }; // end cancel
+
+  $scope.save = function(){
+    $modalInstance.dismiss('canceled');
+  }; // end save
+
+  $scope.hitEnter = function(evt){
+    if(angular.equals(evt.keyCode,13) && !(angular.equals($scope.name,null) || angular.equals($scope.name,'')))
+      $scope.save();
+  }; // end hitEnter
+});
