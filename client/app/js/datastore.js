@@ -49,6 +49,11 @@ function findProject( id )
   return find( dataStore.projects, id );
 }
 
+function findWork( id )
+{
+  return find( dataStore.work, id );
+}
+
 function findWorkForUser( id, fromDate, toDate )
 {
   var w = {};
@@ -97,12 +102,13 @@ function newWorkPlaceholder(userid, projectid, date)
   };
 }
 
-function updateWork( work )
+function addWork( work )
 {
-  if (work.id)
+  if (undefined != work.id)
   {
     return;
   }
+  alert("Adding");
   work.id = nextId( dataStore.work );
   dataStore.work.push( work );
 }

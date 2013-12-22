@@ -83,7 +83,6 @@ tc.controller( 'TimesheetCtrl',
                    $scope.days.push( dayData );
                  }
                  $scope.work = findWorkForUser($scope.user.id, firstDay, firstDay.clone().add('days', 7));
-                 console.log("workset is " + JSON.stringify($scope.work))
                  $scope.findOrCreateWorkForProject = function( workSet, day, projectid)
                    {
                      var existing = _.find( workSet[projectid], function (work) { return work.date.isSame(day.date) } );
@@ -95,10 +94,10 @@ tc.controller( 'TimesheetCtrl',
                      return existing;
                    };
 
-                 $scope.saveWork = function(work) { updateWork(work); };
-
-                 $scope.openComment = function openComment() {
-                   var dlg = $dialogs.create('/partials/timesheet/comment.html','CommentDlgCtrl',{},{key: false,back: 'static'});
+                 $scope.openComment = function openComment( work ) {
+                   var dlg = $dialogs.create('/partials/timesheet/comment.html?c=' + new Date().getTime(),'CommentDlgCtrl',{
+                     work: work
+                   },{key: false, back: 'static'});
                    dlg.result.then(function onOk(name){
                      ;
                    },function onCancel(){
@@ -118,17 +117,33 @@ tc.filter('wc_active', function() { return function(x) {return x != undefined &&
 
 
 tc.controller('CommentDlgCtrl',function($scope,$modalInstance,data){
+  $scope.work = data['work'];
+  $scope.project = findProject(data['work'].projectid);
 
   $scope.cancel = function(){
-    $modalInstance.dismiss('canceled');
+    $modalInstance.dismiss('cancelled');
   }; // end cancel
 
-  $scope.save = function(){
-    $modalInstance.dismiss('canceled');
+  $scope.save = function(work){
+    if ( undefined == work.id )
+    {
+      addWork( work );
+    }
+    else
+    {
+      var w = findWork( work.id );
+      w.comment = work.comment;
+    }
+
+    $modalInstance.dismiss('closed');
   }; // end save
 
   $scope.hitEnter = function(evt){
     if(angular.equals(evt.keyCode,13) && !(angular.equals($scope.name,null) || angular.equals($scope.name,'')))
       $scope.save();
   }; // end hitEnter
+
+  $scope.renderDate = function( work ) {
+    return moment().format('ddd MMM DD');
+  }
 });
